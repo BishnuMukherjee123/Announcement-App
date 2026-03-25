@@ -23,7 +23,7 @@ app.use(helmet());
 // 2. CORS: Restrict API access exclusively to the approved Frontend to deny unauthorized hijacking
 const allowedOrigins = process.env.FRONTEND_URL 
   ? process.env.FRONTEND_URL.split(",") 
-  : ["http://localhost:3000", "http://127.0.0.1:3000"];
+  : [];
 
 app.use(cors({
   origin: function (origin, callback) {

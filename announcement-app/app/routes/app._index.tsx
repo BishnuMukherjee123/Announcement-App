@@ -17,7 +17,7 @@ export function shouldRevalidate({ formMethod, defaultShouldRevalidate }: any) {
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin, session } = await authenticate.admin(request);
-  const BACKEND_URL = process.env.BACKEND_API_URL || "http://127.0.0.1:5000/api";
+  const BACKEND_URL = process.env.BACKEND_API_URL;
   let announcements = [];
   try {
     const res = await fetch(`${BACKEND_URL}/announcements?shop=${session.shop}`);
@@ -39,7 +39,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     return { success: false, error: "Text is required" };
   }
 
-  const BACKEND_URL = process.env.BACKEND_API_URL || "http://127.0.0.1:5000/api";
+  const BACKEND_URL = process.env.BACKEND_API_URL;
 
   try {
     const response = await fetch(`${BACKEND_URL}/announcement`, {
