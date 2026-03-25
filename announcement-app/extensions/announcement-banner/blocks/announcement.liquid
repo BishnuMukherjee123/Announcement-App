@@ -1,0 +1,51 @@
+{% assign announcement_text = shop.metafields.my_app.announcement %}
+
+{% if announcement_text != blank %}
+  <div class="custom-announcement-banner">
+    {{ announcement_text }}
+  </div>
+{% endif %}
+
+<style>
+  .custom-announcement-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: {{ block.settings.bg_color }};
+    color: {{ block.settings.text_color }};
+    text-align: center;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 2147483647; /* Extremely high z-index to float on top of everything */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-family: inherit;
+  }
+  
+  /* Push body down so the fixed banner doesn't cover top header */
+  body {
+    margin-top: 45px !important;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Announcement Banner",
+  "target": "body",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#008060"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    }
+  ]
+}
+{% endschema %}
